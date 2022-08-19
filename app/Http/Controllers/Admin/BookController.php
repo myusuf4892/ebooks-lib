@@ -81,7 +81,7 @@ class BookController extends Controller
         ));
     }
 
-    public function update(Request $request, Book $book, $id)
+    public function update(Request $request, $id)
     {
         $c = $request->validate([
             'isbn' => 'required|unique:books',
@@ -98,17 +98,14 @@ class BookController extends Controller
         ]);
 
         if ($request->file('image')) {
+            // if ($request->file('image')->getSize() == 0) {
+            //     $image = Book::where('id', $id)->get('image');
+            //     $c['image'] = $image;
+            // }
             $today = Carbon::now()->format('Y-m-dH:i:s');
             $filename = $today.$request->file('image')->getClientOriginalName();
-            $c['image'] = $request->file('image')->storeAs('images', $filename);
-        }
-        $image_path = $book->image();
-        if (Book::exists($image_path)) {
-            Book::delete($image_path);
-        }
 
-        if ($request->file('image')->getSize() == 0) {
-            $c['image'] = Book::get(['image'])->where('id', $id);
+            $c['image'] = $request->file('image')->storeAs('images', $filename);
         }
 
         Book::where('id', $id)->update($c);

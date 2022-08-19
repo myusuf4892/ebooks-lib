@@ -1,61 +1,46 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="/">QutuBuku</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link {{ ($title === "Home") ? 'active' : '' }}" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ ($title === "Book") ? 'active' : '' }}" href="/books">Books</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{ ($title === "About") ? 'active' : '' }}" href="/about">About Us</a>
-          </li>
-          @auth
-          @if (Auth::user()->role->id === 1)
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/admin" role="button" aria-expanded="false"><ion-icon name="person-outline"></ion-icon> {{ Auth::user()->name }}</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/admin">Dashboard</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="/">QutuBuku</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
+          <li><a class="nav-link scrollto" href="#services">Catalog</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          @endif
-          @if (Auth::user()->role->id === 2)
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle {{ ($title === "Dashboard") ? 'active' : '' }}" data-bs-toggle="dropdown" href="/donatur/profile" role="button" aria-expanded="false">{{ Auth::user()->name }}</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/donatur/profile">Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/logout">Logout</a></li>
-            </ul>
-          </li>
-          @endif
-          @if (Auth::user()->role->id === 3)
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle {{ ($title === "Dashboard") ? 'active' : '' }}" data-bs-toggle="dropdown" href="/users/profile" role="button" aria-expanded="false">{{ Auth::user()->name }}</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/users/profile">Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/logout">Logout</a></li>
-            </ul>
-          </li>
-          @endif
-          @endauth
-          @guest
-          <li class="nav-item">
-            <a class="nav-link {{ ($title === "Login") ? 'active' : '' }}" href="/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/register">Register</a>
-          </li>
-          @endguest
+          <li><a class="nav-link scrollto" href="#footer">Contact</a></li>
         </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
       </div>
+
     </div>
-</nav>
+</header><!-- End Header -->

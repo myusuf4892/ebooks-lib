@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Donatur\BookDonaturController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\AdminController;
@@ -39,6 +40,9 @@ Route::get('/logout', [UserController::class, 'logout']);
  */
 Route::get('/admin', [AdminController::class, 'main'])->middleware('admin');
 Route::put('/admin/settings/{id}', [AdminController::class, 'setting'])->middleware('admin');
+/**
+ * Admin Books
+ */
 Route::get('/admin/books', [BookController::class, 'main'])->middleware('admin');
 Route::post('/admin/books', [BookController::class, 'store'])->middleware('admin');
 Route::get('/admin/books/{id}/edit', [BookController::class, 'edit'])->middleware('admin');
@@ -55,6 +59,10 @@ Route::get('/donatur/profile', function () {
     $data['title'] = 'Dashboard';
     return view('donatur.index', $data);
 })->middleware('donatur');
+/**
+ * Donatur Books
+ */
+Route::get('/donatur/books/{id}', [BookDonaturController::class, 'main'])->middleware('donatur');
 /**
  * Route User
  */
