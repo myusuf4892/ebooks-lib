@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BookController;
+use App\Http\Controllers\Admin\ReportController;
 
 
 /*
@@ -37,8 +38,16 @@ Route::get('/logout', [UserController::class, 'logout']);
  * Route Admin
  */
 Route::get('/admin', [AdminController::class, 'main'])->middleware('admin');
+Route::put('/admin/settings/{id}', [AdminController::class, 'setting'])->middleware('admin');
 Route::get('/admin/books', [BookController::class, 'main'])->middleware('admin');
 Route::post('/admin/books', [BookController::class, 'store'])->middleware('admin');
+Route::get('/admin/books/{id}/edit', [BookController::class, 'edit'])->middleware('admin');
+Route::put('/admin/books/{id}', [BookController::class, 'update'])->middleware('admin');
+Route::delete('/admin/books/{id}', [BookController::class, 'destroy'])->middleware('admin');
+/**
+ * Report Admin
+ */
+Route::get('/admin/reports', [ReportController::class, 'index'])->middleware('admin');
 /**
  * Route Donatur
  */

@@ -3,18 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class PageController extends Controller
 {
     public function main()
     {
         $data['title'] = 'Home';
-        return view('main', $data);
+        $books = Book::all();
+        return view('main', $data)->with('books', $books);
     }
     public function book()
     {
+        $books = Book::all();
         $data['title'] = 'Book';
-        return view('pages.book', $data);
+        return view('pages.book', $data)->with(
+            'books', $books
+        );
     }
     public function about()
     {

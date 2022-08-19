@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\BookDetail;
+use App\Models\Book;
 
 class Category extends Model
 {
@@ -15,8 +15,8 @@ class Category extends Model
         'slug',
     ];
 
-    public function bookDetail()
+    public function books()
     {
-        return $this->hasMany(BookDetail::class);
+        return $this->hasMany(Book::class);
     }
 }

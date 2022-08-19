@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>@yield('title')</title>
+    <title class="title">@yield('title')</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('assets/admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -24,8 +24,24 @@
 </head>
 
 <body id="page-top">
+<!-- Page Wrapper -->
+<div id="wrapper">
+    @include('admin.partials.sidebar')
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-    @yield('content')
+        @yield('content')
+        @include('admin.partials.footer')
+    </div>
+    <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+@include('admin.blogs.setting')
+@include('admin.partials.logout')
 
 <script src="{{ asset('assets/admin/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -43,6 +59,8 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset('assets/admin/js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ asset('assets/admin/js/demo/chart-pie-demo.js') }}"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
 

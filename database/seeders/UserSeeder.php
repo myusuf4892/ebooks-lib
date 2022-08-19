@@ -24,5 +24,29 @@ class UserSeeder extends Seeder
             'status' => 'active',
             'role_id' => 1
         ]);
+        User::create([
+            'name' => 'donatur',
+            'email' => 'donatur@gmail.com',
+            'phone' => '0898939339',
+            'password' => Hash::make('donatur123'),
+            'status' => 'active',
+            'role_id' => 2
+        ]);
+        User::create([
+            'name' => 'member1',
+            'email' => 'member1@gmail.com',
+            'phone' => '0888889292',
+            'password' => Hash::make('member123'),
+            'status' => 'active',
+            'role_id' => 3
+        ]);
+        User::create([
+            'name' => 'member2',
+            'email' => 'member2@gmail.com',
+            'phone' => '0899991010',
+            'password' => Hash::make('member234'),
+            'status' => 'active',
+            'role_id' => 3
+        ]);
     }
 }

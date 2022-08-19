@@ -1,24 +1,18 @@
 @extends('admin.layouts.main')
 
-@section('title', 'QutuBuku | Admin')
+@section('title',  $blogs->brand)
 
 @section('content')
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-        @include('admin.partials.sidebar')
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
             <!-- Main Content -->
             <div id="content">
-
                 @include('admin.partials.navbar')
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    @if (session()->has('success'))
+                        <div class="alert alert-success mt-2" id="success-alert" role="alert">
+                            <strong>{{ session('success') }}</strong>
+                        </div>
+                    @endif
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -117,27 +111,4 @@
 
             </div>
             <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; QutuBuku 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    @include('admin.partials.logout')
 @endsection

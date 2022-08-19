@@ -1,47 +1,69 @@
-@extends('layouts.main')
+@extends('admin.layouts.auth')
 
 @section('title', $title)
 
 @section('content')
-<div class="container d-flex mt-5 justify-content-center ">
-    <div class="row border border-2 rounded shadow">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            @if (session()->has('success'))
-            <div class="alert alert-success mt-2" id="success-alert" role="alert">
-                <strong>{{ session('success') }}</strong>
-            </div>
-            @endif
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
             @if (session()->has('loginError'))
             <div class="alert alert-danger mt-2" id="error-alert" role="alert">
                 <strong>{{ session('loginError') }}</strong>
             </div>
             @endif
-            <h3 class="text-center mt-3 mb-4">{{ $title }}</h3>
-            <form action="/login" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <div class="form-floating mb-4">
-                        <input id="email" placeholder="email" name="email" type="text" class="form-control form-control-sm @error('email') is-invalid @enderror" value="{{ old('email') }}" autofocus required/>
-                        <label for="email">Email<span class="text-danger">*</span></label>
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input id="password" placeholder="password" name="password" type="password" class="form-control form-control-sm" required/>
-                        <label for="password">Password<span class="text-danger">*</span></label>
-                        @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+            @if (session()->has('success'))
+            <div class="alert alert-success mt-2" id="success-alert" role="alert">
+                <strong>{{ session('success') }}</strong>
+            </div>
+            @endif
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                </div>
+                                <form class="user" action="/login" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="form-control form-control-user @error('email') is-invalid @enderror" name="email"
+                                            id="exampleInputEmail" aria-describedby="emailHelp"
+                                            placeholder="Enter Email Address..." autofocus required/>
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password" required>
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Login
+                                    </button>
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="/register">Create an Account!</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="d-grid gap-2 mx-auto mb-4 rounded">
-                <button type="submit" class="btn btn-primary">LOGIN</button>
-                <span>Not register? <a href="/register" class="text-decoration-none">Register Now!</a></span>
-                </div>
-            </form>
+            </div>
+
         </div>
+
     </div>
+
 </div>
 @endsection
 

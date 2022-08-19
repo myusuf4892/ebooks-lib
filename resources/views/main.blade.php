@@ -9,7 +9,7 @@
             @include('partials.slider')
         </section>
         <section>
-            <h1>Catalog</h1>
+            @include('partials.catalog')
         </section>
         <section>
             <h1>About Us</h1>

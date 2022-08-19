@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">QutuBuku</div>
+        <div class="sidebar-brand-text mx-3">{{ $blogs->brand }}</div>
     </a>
 
     <!-- Divider -->
@@ -38,6 +38,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Menu Pages:</h6>
                 <a class="collapse-item" href="/admin/books">Books</a>
+                <a class="collapse-item" href="/admin/reports">Reports</a>
             </div>
         </div>
     </li>

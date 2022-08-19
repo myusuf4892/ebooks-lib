@@ -58,7 +58,7 @@ aria-hidden="true">
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <input type="hidden" name="donatur" class="form-control" value="{{ Auth::user()->name }}" required/>
+                    <input type="hidden" name="user_id" class="form-control" value="{{ Auth::user()->id }}" required/>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="category">Categories</label>
