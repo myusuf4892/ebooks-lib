@@ -11,7 +11,7 @@ class PageController extends Controller
     {
         $data['title'] = 'Home';
         $books = Book::all();
-        return view('main', $data)->with('books', $books);
+        return view('index', $data)->with('books', $books);
     }
     public function book()
     {
