@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Donatur\DonaturController;
 use App\Http\Controllers\Donatur\BookDonaturController;
+use App\Http\Controllers\Donatur\ReportDonaturController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\AdminController;
@@ -38,12 +40,12 @@ Route::get('/logout', [UserController::class, 'logout']);
 /**
  * Route Admin
  */
-Route::get('/admin', [AdminController::class, 'main'])->middleware('admin');
+Route::get('/admin', [AdminController::class, 'index'])->middleware('admin');
 Route::put('/admin/settings/{id}', [AdminController::class, 'setting'])->middleware('admin');
 /**
  * Admin Books
  */
-Route::get('/admin/books', [BookController::class, 'main'])->middleware('admin');
+Route::get('/admin/books', [BookController::class, 'index'])->middleware('admin');
 Route::post('/admin/books', [BookController::class, 'store'])->middleware('admin');
 Route::get('/admin/books/{id}/edit', [BookController::class, 'edit'])->middleware('admin');
 Route::put('/admin/books/{id}', [BookController::class, 'update'])->middleware('admin');
@@ -53,16 +55,14 @@ Route::delete('/admin/books/{id}', [BookController::class, 'destroy'])->middlewa
  */
 Route::get('/admin/reports', [ReportController::class, 'index'])->middleware('admin');
 /**
- * Route Donatur
+ * Report Donatur
  */
-Route::get('/donatur/profile', function () {
-    $data['title'] = 'Dashboard';
-    return view('donatur.index', $data);
-})->middleware('donatur');
+Route::get('/donatur', [DonaturController::class, 'index'])->middleware('donatur');
+Route::get('/donatur/reports/user/{id}', [ReportDonaturController::class, 'index'])->middleware('donatur');
 /**
  * Donatur Books
  */
-Route::get('/donatur/books/{id}', [BookDonaturController::class, 'main'])->middleware('donatur');
+Route::get('/donatur/books/user/{id}', [BookDonaturController::class, 'index'])->middleware('donatur');
 /**
  * Route User
  */

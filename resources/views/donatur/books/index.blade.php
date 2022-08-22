@@ -1,10 +1,10 @@
-@extends('admin.layouts.main')
+@extends('donatur.layouts.main')
 
-@section('title', $blogs->brand)
+@section('title', $blog->brand)
 
 @section('content')
 <div id="content">
-    @include('admin.partials.navbar')
+    @include('donatur.partials.navbar')
     <div class="container-fluid">
         <div class="card shadow mb-4">
             @if (session()->has('errorBook'))
@@ -17,7 +17,7 @@
                 <strong>{{ session('success') }}</strong>
             </div>
             @endif
-            @include('admin.books.create')
+            @include('donatur.books.create')
             {{-- @include('admin.books.edit') --}}
             <div class="card-header py-3">
                 <div class="container">

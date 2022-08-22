@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticable;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
 use App\Models\Lent;
 use App\Models\BookDetail;

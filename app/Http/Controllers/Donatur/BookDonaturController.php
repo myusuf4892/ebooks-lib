@@ -12,15 +12,15 @@ use Carbon\Carbon;
 
 class BookDonaturController extends Controller
 {
-    public function main($id)
+    public function index($id)
     {
         $books = Book::where('user_id', $id)->paginate(5);
         $categories = Category::all();
-        $blogs = Blog::first();
+        $blog = Blog::first();
         return view('donatur.books.index', compact(
             'books',
             'categories',
-            'blogs'
+            'blog'
         ));
     }
 

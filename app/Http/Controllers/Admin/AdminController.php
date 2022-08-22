@@ -10,7 +10,7 @@ use App\Models\Blog;
 
 class AdminController extends Controller
 {
-    public function main()
+    public function index()
     {
         $data['title'] = 'Dashboard';
         $dataUser = DB::table('users')->get();
