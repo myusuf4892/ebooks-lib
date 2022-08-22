@@ -18,7 +18,7 @@
 
   <!-- Vendor CSS Files -->
   <link href="https://bookstories.000webhostapp.com/blog/vendor/aos/aos.css" rel="stylesheet">
-  <link href="https://bookstories.000webhostapp.com/blog/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ asset('assets/blog/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/blog/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/blog/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="https://bookstories.000webhostapp.com/blog/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
