@@ -54,6 +54,8 @@
   <script src="https://bookstories.000webhostapp.com/blog/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="https://bookstories.000webhostapp.com/blog/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="https://bookstories.000webhostapp.com/blog/vendor/php-email-form/validate.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
   <!-- Template Main JS File -->
   <script src="https://bookstories.000webhostapp.com/blog/js/main.js"></script>
