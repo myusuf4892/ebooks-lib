@@ -7,7 +7,7 @@
         </div>
 
         <div class="col-lg-6 intro-img order-lg-last order-first" data-aos="zoom-out" data-aos-delay="200">
-          <img src="{{ asset('assets/blog/img/hero-img.svg') }}" alt="" class="img-fluid">
+          <img src="https://bookstories.000webhostapp.com/blog/img/hero-img.svg" alt="" class="img-fluid">
         </div>
       </div>
 

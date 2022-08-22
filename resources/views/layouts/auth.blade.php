@@ -18,7 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="https://bookstories.000webhostapp.com/admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="https://bookstories.000webhostapp.com/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -28,14 +28,13 @@
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('assets/admin/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/jquery/jquery.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{{ asset('assets/admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="https://bookstories.000webhostapp.com/admin/js/sb-admin-2.min.js') }}"></script>
-    <script src="https://bookstories.000webhostapp.com/admin/js/script.js') }}"></script>
+    <script src="https://bookstories.000webhostapp.com/admin/js/sb-admin-2.min.js"></script>
+    <script src="https://bookstories.000webhostapp.com/admin/js/script.js"></script>
 
 </body>
 
