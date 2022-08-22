@@ -17,11 +17,11 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="{{ asset('assets/blog/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="{{ asset('assets/blog/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/blog/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/blog/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/blog/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="https://bookstories.000webhostapp.com/blog/css/style.css" rel="stylesheet">
@@ -48,11 +48,11 @@
 
   <!-- Vendor JS Files -->
   <script src="https://bookstories.000webhostapp.com/blog/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="{{ asset('assets/blog/vendor/aos/aos.js') }}"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="{{ asset('assets/blog/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/blog/vendor/glightbox/js/glightbox.min.js') }}"></script>
   <script src="https://bookstories.000webhostapp.com/blog/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="{{ asset('assets/blog/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <script src="https://bookstories.000webhostapp.com/blog/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
