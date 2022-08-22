@@ -2,7 +2,7 @@
 <footer id="footer" class="section-bg">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong>Rapid</strong>. All Rights Reserved
+        &copy; Copyright <strong>{{ $blog->brand }}</strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!--

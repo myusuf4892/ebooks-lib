@@ -38,8 +38,6 @@
 
   @include('partials.navbar')
 
-  @include('partials.hero')
-
   @yield('content')
 
   @include('partials.footer')

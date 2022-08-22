@@ -8,49 +8,15 @@
       </header>
 
       <div class="row g-5">
-
+        @foreach ($books as $book)
         <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
           <div class="box">
-            <div class="image-fluid mb-3"><img src="{{ asset('storage/images/book1.jpeg') }}" alt=""></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            <div class="image-fluid mb-3"><img src="{{ asset('storage/images/'. $book->image) }}" alt=""></div>
+            <h4 class="title"><a href="">{{ $book->title }}</a></h4>
+            <p class="description">{{ $book->description }}</p>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="box">
-            <div class="image-fluid mb-3"><img src="{{ asset('storage/images/book1.jpeg') }}" alt=""></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="box">
-            <div class="image-fluid mb-3"><img src="{{ asset('storage/images/book1.jpeg') }}" alt=""></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="box">
-            <div class="image-fluid mb-3"><img src="{{ asset('storage/images/book1.jpeg') }}" alt=""></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="box">
-            <div class="image-fluid mb-3"><img src="{{ asset('storage/images/book1.jpeg') }}" alt=""></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-          <div class="box">
-            <div class="image-fluid mb-3"><img src="{{ asset('storage/images/book1.jpeg') }}" alt=""></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-          </div>
-        </div>
+        @endforeach
 
     </div>
 

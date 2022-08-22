@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Blog;
 
 class PageController extends Controller
 {
     public function main()
     {
-        $data['title'] = 'Home';
-        $books = Book::all();
-        return view('index', $data)->with('books', $books);
+        $title = 'Home';
+        $books = Book::paginate(6);
+        $blog = Blog::first();
+        return view('index', compact(
+            'title',
+            'books',
+            'blog'
+        ));
     }
     public function book()
     {

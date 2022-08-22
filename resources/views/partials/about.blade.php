@@ -6,7 +6,7 @@
 
         <div class="col-lg-5 col-md-6">
           <div class="about-img" data-aos="fade-right" data-aos-delay="100">
-            <img src="assets/img/about-img.jpg" alt="">
+            <img src="https://bookstories.000webhostapp.com/blog/img/about-img.jpg" alt="">
           </div>
         </div>
 
