@@ -15,14 +15,18 @@ class ReportController extends Controller
     public function index()
     {
         $title = 'Admin | Report';
-        $reports = Book::withTrashed()->paginate(5);
-        $booksAmount = Book::withTrashed()->orderBy('price')->paginate(5);
+        $reports = Lent::paginate(10);
+        $booksAmount = Lent::orderBy('price')->sum('price');
+        $amercement = Lent::orderBy('amercement')->sum('amercement');
+        $total = $booksAmount + $amercement;
         $categories = Category::all();
         $blogs = Blog::first();
         return view('admin.reports.index', compact(
             'title',
             'reports',
             'booksAmount',
+            'amercement',
+            'total',
             'categories',
             'blogs'
         ));

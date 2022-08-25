@@ -63,10 +63,10 @@
                                 <td>{{ $book->created_at }}</td>
                                 <td>{{ $book->status }}</td>
                                 <td>
-                                    <form action="/admin/books/{{ $book->id }}" method="POST">
+                                    <form action="/donatur/books/{{ $book->id }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <a href="/admin/books/{{ $book->isbn }}/edit" class="btn btn-sm btn-warning"><ion-icon name="create-outline" class="text-bold text-center mt-1"></ion-icon></a>
+                                        <a href="/donatur/books/{{ $book->isbn }}/edit" class="btn btn-sm btn-warning"><ion-icon name="create-outline" class="text-bold text-center mt-1"></ion-icon></a>
                                         <button type="submit" class="btn btn-sm btn-danger d-inline-block" onclick="return confirm('Are you sure you want to delete this item')"><ion-icon name="close-circle-outline" class="text-bold text-center mt-1"></ion-icon></button>
                                     </form>
                                 </td>
@@ -74,22 +74,22 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="row">
-                        <div class="col-sm-4 col-lg-8">
-                            <span class="text-xs">showing {{ $books->firstItem() }} to {{ $books->lastItem() }} of {{ $books->total() }} results</span>
-                        </div>
-                        <div class="col-sm-8 col-lg-4">
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination pagination-sm justify-content-end">
-                                <li class="page-item @if($books->onFirstPage()) disabled @endif">
-                                    <a class="page-link" href="{{ $books->previousPageUrl() }}" tabindex="-1" aria-disabled="true">&laquo; Prev</a>
-                                </li>
-                                <li class="page-item @if($books->onLastPage()) disabled @endif">
-                                    <a class="page-link" href="{{ $books->nextPageUrl() }}">Next &raquo;</a>
-                                </li>
-                                </ul>
-                            </nav>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-lg-8">
+                        <span class="text-xs">showing {{ $books->firstItem() }} to {{ $books->lastItem() }} of {{ $books->total() }} results</span>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-lg-4">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination pagination-sm justify-content-end">
+                            <li class="page-item @if($books->onFirstPage()) disabled @endif">
+                                <a class="page-link" href="{{ $books->previousPageUrl() }}" tabindex="-1" aria-disabled="true">&laquo; Prev</a>
+                            </li>
+                            <li class="page-item @if($books->onLastPage()) disabled @endif">
+                                <a class="page-link" href="{{ $books->nextPageUrl() }}">Next &raquo;</a>
+                            </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

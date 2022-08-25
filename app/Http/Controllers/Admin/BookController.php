@@ -4,17 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 use App\Models\Category;
 use App\Models\Book;
 use App\Models\Blog;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Image;
 
 class BookController extends Controller
 {
-    public function main()
+    public function index()
     {
-        $books = Book::paginate(5);
+        $books = Book::orderBy('updated_at', 'DESC')->paginate(5);
         $categories = Category::all();
         $blogs = Blog::first();
         return view('admin.books.index', compact(
@@ -40,9 +43,17 @@ class BookController extends Controller
         ]);
 
         if ($request->file('image')) {
+            $image = $request->file('image');
             $today = Carbon::now()->format('Y-m-dH:i:s');
-            $filename = $today.$request->file('image')->getClientOriginalName();
-            $c['image'] = $request->file('image')->storeAs('images', $filename);
+            $filename = $today.'.'.$image->extension();
+
+            $destinationPath = public_path('images'.'/');
+            $img = Image::make($image->path());
+            $img->resize(183, 275, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $img->save($destinationPath . $filename);
         }
 
         $c['status'] = 'verification';
@@ -66,6 +77,21 @@ class BookController extends Controller
         return back()->with('success', 'Success Add Book!');
     }
 
+    public function verification(Request $request)
+    {
+        $id = $request->isbn;
+        $status = $request->status;
+
+        if($status == 'rejected'){
+            $c['status'] = $status;
+            Book::where('isbn', $id)->update($c);
+        }
+        $c['status'] = $status;
+        Book::where('isbn', $id)->update($c);
+
+        return redirect('/admin/books');
+    }
+
     public function edit($id)
     {
         $title = 'Admin | Book';
@@ -84,7 +110,7 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         $c = $request->validate([
-            'isbn' => 'required|unique:books',
+            'isbn' => 'required',
             'image' =>'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'title' => 'required',
             'author' => 'required',
@@ -93,19 +119,28 @@ class BookController extends Controller
             'price' => 'required',
             'stock' => 'required',
             'status' => 'required',
-            'user_id' => 'required',
             'category_id' => 'required'
         ]);
-
-        if ($request->file('image')) {
-            // if ($request->file('image')->getSize() == 0) {
-            //     $image = Book::where('id', $id)->get('image');
-            //     $c['image'] = $image;
-            // }
+        $imgSize = File::size($request->file('image'));
+        if ($imgSize == null) {
+            $book = Book::where('id', $id)->first();
+            $c['image'] = $book->image;
+        }
+        if ($imgSize != null) {
+            $image = $request->file('image');
             $today = Carbon::now()->format('Y-m-dH:i:s');
-            $filename = $today.$request->file('image')->getClientOriginalName();
+            $filename = $today.'.'.$image->extension();
 
-            $c['image'] = $request->file('image')->storeAs('images', $filename);
+            $destinationPath = public_path('images'.'/');
+            $img = Image::make($image->path());
+            $img->resize(183, 275, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $img->save($destinationPath . $filename);
+            $book = Book::where('id', $id)->first();
+            $c['image'] = $filename;
+            $c['user_id'] = $book->user_id;
         }
 
         Book::where('id', $id)->update($c);

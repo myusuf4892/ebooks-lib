@@ -69,23 +69,23 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="row">
-                        <div class="col-sm-4 col-lg-8">
-                            <span class="text-xs">showing {{ $reports->firstItem() }} to {{ $reports->lastItem() }} of {{ $reports->total() }} results</span>
-                        </div>
-                        <div class="col-sm-8 col-lg-4">
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination pagination-sm justify-content-end">
-                                <li class="page-item @if($reports->onFirstPage()) disabled @endif">
-                                    <a class="page-link" href="{{ $reports->previousPageUrl() }}" tabindex="-1" aria-disabled="true">&laquo; Prev</a>
-                                </li>
-                                <li class="page-item @if($reports->onLastPage()) disabled @endif">
-                                    <a class="page-link" href="{{ $reports->nextPageUrl() }}">Next &raquo;</a>
-                                </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-lg-8">
+                    <span class="text-xs">showing {{ $reports->firstItem() }} to {{ $reports->lastItem() }} of {{ $reports->total() }} results</span>
+                </div>
+                <div class="col-md-4 col-sm-4 col-lg-4">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination pagination-sm justify-content-end">
+                        <li class="page-item @if($reports->onFirstPage()) disabled @endif">
+                            <a class="page-link" href="{{ $reports->previousPageUrl() }}" tabindex="-1" aria-disabled="true">&laquo; Prev</a>
+                        </li>
+                        <li class="page-item @if($reports->onLastPage()) disabled @endif">
+                            <a class="page-link" href="{{ $reports->nextPageUrl() }}">Next &raquo;</a>
+                        </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

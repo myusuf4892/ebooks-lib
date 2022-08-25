@@ -23,7 +23,7 @@ return new class extends Migration
             $table->longText('description');
             $table->integer('price');
             $table->integer('stock');
-            $table->enum('status', ['verified', 'verification']);
+            $table->enum('status', ['verified', 'rejected', 'verification']);
             $table->string('user_id');
             $table->foreignId('category_id');
             $table->softDeletes();

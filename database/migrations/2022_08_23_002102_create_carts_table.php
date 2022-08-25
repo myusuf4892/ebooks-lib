@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lents', function (Blueprint $table) {
+        Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->dateTime('lent_at');
             $table->dateTime('due_at');
-            $table->dateTime('return_at')->nullable();
-            $table->integer('price');
-            $table->string('status');
-            $table->integer('amercement');
-            $table->foreignId('user_id');
-            $table->foreignId('book_id');
+            $table->integer('user_id');
+            $table->integer('book_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lents');
+        Schema::dropIfExists('carts');
     }
 };

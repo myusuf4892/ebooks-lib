@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticable;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Cart;
 use App\Models\Role;
 use App\Models\Lent;
 use App\Models\BookDetail;
@@ -35,5 +36,10 @@ class User extends Authenticable
     public function books()
     {
         return $this->hasMany(BookDetail::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'user_id');
     }
 }

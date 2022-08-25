@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\Blog;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Image;
 
 class BookDonaturController extends Controller
 {
@@ -40,9 +41,19 @@ class BookDonaturController extends Controller
         ]);
 
         if ($request->file('image')) {
+            $image = $request->file('image');
             $today = Carbon::now()->format('Y-m-dH:i:s');
-            $filename = $today.$request->file('image')->getClientOriginalName();
-            $c['image'] = $request->file('image')->storeAs('images', $filename);
+            $filename = $today.'.'.$image->extension();
+
+            // File::makeDirectory(public_path('images/'));
+
+            $destinationPath = public_path('images'.'/');
+            $img = Image::make($image->path());
+            $img->resize(183, 275, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $img->save($destinationPath . $filename);
         }
 
         $c['status'] = 'verification';
@@ -68,7 +79,7 @@ class BookDonaturController extends Controller
 
     public function edit($id)
     {
-        $title = 'Admin | Book';
+        $title = 'Donatur | Book';
         $bookDetail = Book::where('isbn', $id)->first();
         $categories = Category::all();
         $blogs = Blog::first();

@@ -4,20 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 use App\Models\User;
 use App\Models\Book;
 
-class Lent extends Model
+class Cart extends Model
 {
-    use HasFactory;
+    use HasFactory, softDeletes;
 
     protected $fillable = [
         'lent_at',
         'due_at',
-        'return_at',
-        'price',
-        'status',
-        'amercement',
         'user_id',
         'book_id',
     ];

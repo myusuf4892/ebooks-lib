@@ -24,7 +24,7 @@
                         <input type="hidden" name="isbn" value="{{ $bookDetail->isbn }}"/>
                         <div class="form-group">
                             <div class="col-2">
-                                <img src="{{ url('storage/images/'.$bookDetail->image) }}" class="mb-3">
+                                <img src="{{ asset('images/'.$bookDetail->image) }}" class="mb-3">
                             </div>
                             <label for="image">Image</label>
                             <input id="image" type="file" name="image" class="form-control-file @error('image') is-invalid @enderror"/>
@@ -76,7 +76,6 @@
                             @enderror
                         </div>
                         <input type="hidden" name="status" value="{{ $bookDetail->status }}" required/>
-                        <input type="hidden" name="user_id" value="{{ $bookDetail->user_id }}" required/>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="category">Categories</label>

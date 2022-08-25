@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Blog;
+use App\Models\Lent;
 
 class AdminController extends Controller
 {
@@ -14,11 +15,16 @@ class AdminController extends Controller
     {
         $data['title'] = 'Dashboard';
         $dataUser = DB::table('users')->get();
+        $grossAmount = Lent::orderBy('price');
+        $netAmount = Lent::where('status', 'paid')->orderBy('price');
+
         $countUser = $dataUser->count();
         $blogs = Blog::first();
         return view('admin.index', compact(
             'dataUser',
             'countUser',
+            'grossAmount',
+            'netAmount',
             'blogs'
         ));
     }

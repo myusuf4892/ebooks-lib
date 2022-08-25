@@ -32,6 +32,8 @@
             <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <ion-icon name="chevron-down-outline"></ion-icon></a>
               <ul>
                 <li><a href="/profile">Profile</a></li>
+                <li><a href="/carts/user/{{ Auth::user()->id }}">Cart <span class="text-danger"></span></a></li>
+                <li><a href="/checkout/user/{{ Auth::user()->id }}">Checkout</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>

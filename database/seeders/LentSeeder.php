@@ -23,6 +23,9 @@ class LentSeeder extends Seeder
             'lent_at' => $date,
             'due_at' => $due,
             'return_at' => null,
+            'price' => 100000,
+            'status' => 'paid',
+            'amercement' => 0,
             'user_id' => 3,
             'book_id' => 1
         ]);
@@ -31,6 +34,9 @@ class LentSeeder extends Seeder
             'lent_at' => $date,
             'due_at' => $due,
             'return_at' => null,
+            'price' => 100000,
+            'status' => 'paid',
+            'amercement' => 0,
             'user_id' => 4,
             'book_id' => 2
         ]);

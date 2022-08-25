@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Category;
+use App\Models\Cart;
 use App\Models\Lent;
 use App\Models\User;
 
@@ -43,8 +45,13 @@ class Book extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function image()
+    public function carts()
     {
-        return '/storage/images/'.$this->image;
+        return $this->hasMany(Cart::class, 'book_id');
+    }
+
+    public function getSize()
+    {
+        return Storage::size($this->image);
     }
 }

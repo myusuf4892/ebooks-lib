@@ -25,9 +25,15 @@ use App\Http\Controllers\Admin\ReportController;
 |
 */
 
-Route::get('/', [PageController::class, 'main']);
-Route::get('/books', [PageController::class, 'book']);
-Route::get('/about', [PageController::class, 'about']);
+Route::get('/', [PageController::class, 'index']);
+Route::get('/books', [PageController::class, 'books']);
+Route::get('/books/{id}', [PageController::class, 'show'])->middleware('user');
+
+Route::post('/carts', [PageController::class, 'cart'])->middleware('user');
+Route::get('/carts/user/{id}', [PageController::class, 'cartDetail'])->middleware('user');
+Route::post('/checkout', [PageController::class, 'checkout'])->middleware('user');
+Route::get('/checkout/user/{id}', [PageController::class, 'checkoutDetail'])->middleware('user');
+Route::get('/pay', [PageController::class, 'pay'])->middleware('user');
 /**
  * Authentication app
  */
@@ -47,6 +53,7 @@ Route::put('/admin/settings/{id}', [AdminController::class, 'setting'])->middlew
  */
 Route::get('/admin/books', [BookController::class, 'index'])->middleware('admin');
 Route::post('/admin/books', [BookController::class, 'store'])->middleware('admin');
+Route::post('/verification', [BookController::class, 'verification'])->middleware('admin');
 Route::get('/admin/books/{id}/edit', [BookController::class, 'edit'])->middleware('admin');
 Route::put('/admin/books/{id}', [BookController::class, 'update'])->middleware('admin');
 Route::delete('/admin/books/{id}', [BookController::class, 'destroy'])->middleware('admin');
@@ -63,6 +70,7 @@ Route::get('/donatur/reports/user/{id}', [ReportDonaturController::class, 'index
  * Donatur Books
  */
 Route::get('/donatur/books/user/{id}', [BookDonaturController::class, 'index'])->middleware('donatur');
+Route::post('/donatur/books', [BookDonaturController::class, 'store'])->middleware('donatur');
 /**
  * Route User
  */
