@@ -29,16 +29,30 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseManagement"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Mangement Application</span>
+        </a>
+        <div id="collapseManagement" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Menu:</h6>
+                <a class="collapse-item" href="/admin/books">Books</a>
+                <a class="collapse-item" href="/admin/users">Users</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
+            <span>Reports</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Menu Pages:</h6>
-                <a class="collapse-item" href="/admin/books">Books</a>
-                <a class="collapse-item" href="/admin/reports">Reports</a>
+                <h6 class="collapse-header">Menu:</h6>
+                <a class="collapse-item" href="/admin/reports">Earnings</a>
             </div>
         </div>
     </li>

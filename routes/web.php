@@ -9,9 +9,11 @@ use App\Http\Controllers\Donatur\BookDonaturController;
 use App\Http\Controllers\Donatur\ReportDonaturController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\CategoryController;
 
 
 /*
@@ -28,12 +30,19 @@ use App\Http\Controllers\Admin\ReportController;
 Route::get('/', [PageController::class, 'index']);
 Route::get('/books', [PageController::class, 'books']);
 Route::get('/books/{id}', [PageController::class, 'show'])->middleware('user');
+Route::post('/books/return/{id}', [PageController::class, 'returned'])->middleware('user');
 
 Route::post('/carts', [PageController::class, 'cart'])->middleware('user');
 Route::get('/carts/user/{id}', [PageController::class, 'cartDetail'])->middleware('user');
+
+Route::get('/checkout/{id}/confirm', [PageController::class, 'confirmCheckout'])->middleware('user');
 Route::post('/checkout', [PageController::class, 'checkout'])->middleware('user');
 Route::get('/checkout/user/{id}', [PageController::class, 'checkoutDetail'])->middleware('user');
-Route::get('/pay', [PageController::class, 'pay'])->middleware('user');
+
+Route::post('/payment', [PageController::class, 'payment'])->middleware('user');
+Route::post('/payment/confirm', [PageController::class, 'confirmPayment'])->middleware('user');
+Route::get('/history/user/{id}', [PageController::class, 'historyPayment'])->middleware('user');
+
 /**
  * Authentication app
  */
@@ -57,10 +66,19 @@ Route::post('/verification', [BookController::class, 'verification'])->middlewar
 Route::get('/admin/books/{id}/edit', [BookController::class, 'edit'])->middleware('admin');
 Route::put('/admin/books/{id}', [BookController::class, 'update'])->middleware('admin');
 Route::delete('/admin/books/{id}', [BookController::class, 'destroy'])->middleware('admin');
+
+Route::get('/admin/books/categories/checkSlug', [CategoryController::class, 'checkSlug'])->middleware('admin');
+Route::post('admin/books/categories', [CategoryController::class, 'store'])->middleware('admin');
 /**
  * Report Admin
  */
+Route::get('/admin/users', [AdminController::class, 'getUser'])->middleware('admin');
+Route::post('/admin/users', [AdminController::class, 'update'])->middleware('admin');
+Route::get('/admin/users/{id}/edit', [AdminController::class, 'edit'])->middleware('admin');
+Route::post('/admin/user/verification', [AdminController::class, 'userVerification'])->middleware('admin');
 Route::get('/admin/reports', [ReportController::class, 'index'])->middleware('admin');
+Route::post('/admin/reports/confirm/{id}', [ReportController::class, 'bookReturned'])->middleware('admin');
+Route::get('/admin/reports/print', [ReportController::class, 'printPdf'])->middleware('admin');
 /**
  * Report Donatur
  */

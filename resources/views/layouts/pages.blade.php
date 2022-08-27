@@ -25,12 +25,13 @@
 
   <!-- Template Main CSS File -->
   <link href="https://bookstories.000webhostapp.com/blog/css/style.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
 
-  @include('partials.navbar')
+  @include('partials._navbar')
 
   @yield('content')
 

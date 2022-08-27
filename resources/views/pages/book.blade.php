@@ -1,6 +1,6 @@
-@extends('layouts.main')
+@extends('layouts.pages')
 
-@section('title', 'Book')
+@section('title', $title)
 
 @section('content')
     <section id="hero" class="clearfix">

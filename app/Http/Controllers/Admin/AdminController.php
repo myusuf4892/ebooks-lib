@@ -8,25 +8,78 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\Blog;
 use App\Models\Lent;
+use App\Models\User;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $data['title'] = 'Dashboard';
+        $title = 'Dashboard';
         $dataUser = DB::table('users')->get();
-        $grossAmount = Lent::orderBy('price');
-        $netAmount = Lent::where('status', 'paid')->orderBy('price');
+        $amercement = Lent::withTrashed()->orderBy('amercement')->sum('amercement');
+        $grossAmount = Lent::withTrashed()->orderBy('price')->sum('price') + $amercement;
+        $netAmount = Lent::withTrashed()->where('payment_status', 'paid')->orderBy('price')->sum('price') + $amercement;
 
         $countUser = $dataUser->count();
         $blogs = Blog::first();
         return view('admin.index', compact(
+            'title',
             'dataUser',
             'countUser',
             'grossAmount',
             'netAmount',
             'blogs'
         ));
+    }
+
+    public function getUser()
+    {
+        $title = 'Admin | Users';
+        $users = User::orderBy('updated_at', 'DESC')->paginate(10);
+        $blogs = Blog::first();
+
+        return view('admin.users.index', compact(
+            'title',
+            'users',
+            'blogs'
+        ));
+    }
+
+    public function userVerification(Request $request)
+    {
+        $c = $request->validate([
+            'status' => 'required'
+        ]);
+
+        User::where('id', $request->user_id)->update($c);
+
+        return redirect('/admin/users')->with('success', 'User has been Verified!');
+    }
+
+    public function edit($id)
+    {
+        $title = 'Admin | Users';
+        $user = User::where('id', $id)->first();
+        $blogs = Blog::first();
+
+        return view('admin.users.edit', compact(
+            'title',
+            'user',
+            'blogs'
+        ));
+    }
+
+    public function update(Request $request)
+    {
+        $c = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+        ]);
+
+        User::where('id', $request->user_id)->update($c);
+
+        return redirect('/admin/users')->with('success', 'success user updated!');
     }
 
     public function setting(Request $request, $id)

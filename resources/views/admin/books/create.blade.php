@@ -70,7 +70,14 @@ aria-hidden="true">
                             @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="row justify-content-end">
+                        <div class="col-3 col-md-2">
+                            <button class="btn btn-sm btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="col-3 col-md-2">
+                            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

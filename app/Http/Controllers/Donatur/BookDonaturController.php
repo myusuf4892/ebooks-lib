@@ -15,7 +15,7 @@ class BookDonaturController extends Controller
 {
     public function index($id)
     {
-        $books = Book::where('user_id', $id)->paginate(5);
+        $books = Book::where('user_id', $id)->orderBy('updated_at', 'DESC')->paginate(5);
         $categories = Category::all();
         $blog = Blog::first();
         return view('donatur.books.index', compact(
@@ -44,8 +44,6 @@ class BookDonaturController extends Controller
             $image = $request->file('image');
             $today = Carbon::now()->format('Y-m-dH:i:s');
             $filename = $today.'.'.$image->extension();
-
-            // File::makeDirectory(public_path('images/'));
 
             $destinationPath = public_path('images'.'/');
             $img = Image::make($image->path());
@@ -82,17 +80,17 @@ class BookDonaturController extends Controller
         $title = 'Donatur | Book';
         $bookDetail = Book::where('isbn', $id)->first();
         $categories = Category::all();
-        $blogs = Blog::first();
+        $blog = Blog::first();
 
         return view('admin.books.edit', compact(
             'title',
             'bookDetail',
             'categories',
-            'blogs'
+            'blog'
         ));
     }
 
-    public function update(Request $request, Book $book, $id)
+    public function update(Request $request, $id)
     {
         $c = $request->validate([
             'isbn' => 'required|unique:books',
@@ -108,29 +106,42 @@ class BookDonaturController extends Controller
             'category_id' => 'required'
         ]);
 
-        if ($request->file('image')) {
+        $imgSize = File::size($request->file('image'));
+        if ($imgSize == null) {
+            $book = Book::where('id', $id)->first();
+            $c['image'] = $book->image;
+        }
+        if ($imgSize != null) {
+            $image = $request->file('image');
             $today = Carbon::now()->format('Y-m-dH:i:s');
-            $filename = $today.$request->file('image')->getClientOriginalName();
-            $c['image'] = $request->file('image')->storeAs('images', $filename);
-        }
-        $image_path = $book->image();
-        if (Book::exists($image_path)) {
-            Book::delete($image_path);
-        }
+            $filename = $today.'.'.$image->extension();
 
-        if ($request->file('image')->getSize() == 0) {
-            $c['image'] = Book::get(['image'])->where('id', $id);
+            $destinationPath = public_path('images'.'/');
+            $img = Image::make($image->path());
+            $img->resize(183, 275, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $img->save($destinationPath . $filename);
+            $book = Book::where('id', $id)->first();
+            if (File::exists($destinationPath . $book->image)) {
+                File::delete($destinationPath . $book->image);
+            }
+
+            $c['image'] = $filename;
         }
 
         Book::where('id', $id)->update($c);
+        $data = Book::find($id);
 
-        return redirect('/admin/books')->with('success', 'Book has been updated!');
+        return redirect('/donatur/books/user/' . $data->user_id)->with('success', 'Book has been updated!');
     }
 
     public function destroy(Request $request, $id)
     {
-        Book::where('id', $id)->delete();
+        Book::find($id)->delete();
+        $data = Book::withTrashed()->find($id);
 
-        return redirect('/admin/books')->with('success', 'Book has been deleted!');
+        return redirect('/donatur/books/user/' . $data->user_id)->with('success', 'Book has been deleted!');
     }
 }

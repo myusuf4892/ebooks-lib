@@ -19,11 +19,13 @@ class BookController extends Controller
     {
         $books = Book::orderBy('updated_at', 'DESC')->paginate(5);
         $categories = Category::all();
-        $blogs = Blog::first();
+        $categoriesItem = Category::paginate(5);
+        $blog = Blog::first();
         return view('admin.books.index', compact(
             'books',
             'categories',
-            'blogs'
+            'categoriesItem',
+            'blog'
         ));
     }
 
@@ -97,13 +99,13 @@ class BookController extends Controller
         $title = 'Admin | Book';
         $bookDetail = Book::where('isbn', $id)->first();
         $categories = Category::all();
-        $blogs = Blog::first();
+        $blog = Blog::first();
 
         return view('admin.books.edit', compact(
             'title',
             'bookDetail',
             'categories',
-            'blogs'
+            'blog'
         ));
     }
 
@@ -121,6 +123,7 @@ class BookController extends Controller
             'status' => 'required',
             'category_id' => 'required'
         ]);
+
         $imgSize = File::size($request->file('image'));
         if ($imgSize == null) {
             $book = Book::where('id', $id)->first();
@@ -139,8 +142,11 @@ class BookController extends Controller
 
             $img->save($destinationPath . $filename);
             $book = Book::where('id', $id)->first();
+            if (File::exists($destinationPath . $book->image)) {
+                File::delete($destinationPath . $book->image);
+            }
+
             $c['image'] = $filename;
-            $c['user_id'] = $book->user_id;
         }
 
         Book::where('id', $id)->update($c);
@@ -150,7 +156,7 @@ class BookController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        Book::where('id', $id)->delete();
+        Book::find($id)->delete();
 
         return redirect('/admin/books')->with('success', 'Book has been deleted!');
     }

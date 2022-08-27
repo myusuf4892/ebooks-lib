@@ -18,15 +18,18 @@
             </div>
             @endif
             @include('admin.books.create')
-            {{-- @include('admin.books.edit') --}}
+            @include('admin.books.categories.create')
             <div class="card-header py-3">
-                <div class="container">
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-10 col-sm-11 col-lg-11">
+                        <div class="col-5 col-md-3 col-sm-8 col-lg-10">
                             <h6 class="font-weight-bold text-primary mt-2">Books Table</h6>
                         </div>
-                        <div class="col-2 col-sm-1 col-lg-1 justify-content-end">
-                            <a href="#" data-toggle="modal" data-target="#createBooks" class="btn btn-primary btn-sm">ADD</a>
+                        <div class="col-3 col-md-5 col-sm-2 col-lg-1 text-right">
+                            <a href="#" data-toggle="modal" data-target="#createBooks" class="btn btn-primary btn-sm" style="font-size: 10px;"><ion-icon name="add-outline"></ion-icon>Books</a>
+                        </div>
+                        <div class="col-3 col-md-4 col-sm-2 col-lg-1 text-left">
+                            <a href="#" data-toggle="modal" data-target="#createCategories" class="btn btn-sm btn-primary" style="font-size: 10px;"><ion-icon name="add-outline"></ion-icon>Category</a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +37,7 @@
             <div class="card-body">
                 <div class="table-responsive table-sm">
                     <table class="table table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead class="bg-primary text-xs text-light">
+                        <thead class="bg-primary text-xs text-light text-center">
                             <tr>
                                 <th>No</th>
                                 <th>Isbn</th>
@@ -51,9 +54,9 @@
                             </tr>
                         </thead>
                         <tbody class="text-xs">
-                            @foreach ($books as $index => $book)
+                            @foreach ($books as $book)
                             <tr>
-                                <td>{{ $index +1 }}</td>
+                                <td>{{ ($books->currentPage() - 1) * $books->perPage() + $loop->iteration }}</td>
                                 <td>{{ $book->isbn }}</td>
                                 <td>{{ $book->category->name }}</td>
                                 <td>{{ $book->title }}</td>
@@ -63,7 +66,7 @@
                                 <td>{{ $book->stock }}</td>
                                 <td>{{ $book->user->name }}</td>
                                 <td>{{ $book->created_at }}</td>
-                                <td>
+                                <td class="text-center">
                                 @if ($book->status == 'rejected')
                                     <span class="text-uppercase text-danger text-bold">{{ $book->status }}</span>
                                 @endif

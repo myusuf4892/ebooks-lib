@@ -1,6 +1,6 @@
-@extends('layouts.main')
+@extends('layouts.pages')
 
-@section('title', 'Book')
+@section('title', $title)
 
 @section('content')
     <section id="about" class="about">
@@ -11,34 +11,33 @@
                     <hr>
                 </header>
                 <div class="container">
+                    @if (session()->has('error'))
+                    <div class="alert alert-danger mt-2" id="error-alert" role="alert">
+                        <strong>{{ session('error') }}</strong>
+                    </div>
+                    @endif
                     @foreach ($carts as $cart)
-                        <div class="row mb-3">
+                        <div class="row">
                             <div class="col-4 col-sm-2 col-md-4 col-lg-3">
                                 <img src="{{ asset('images/' . $cart->book->image) }}" class="img-fluid">
                             </div>
-                            <div class="col-4 col-sm-6 col-md-6 col-lg-4">
+                            <div class="col-8 col-sm-10 col-md-8 col-lg-9">
                                 <h4>{{ $cart->book->title }}</h4>
-                                <span>Lent {{ $cart->lent_at }}</span><br>
-                                <span>Due {{ $cart->due_at }}</span><br><br>
-                                <span>Member {{ $cart->user->name }}</span>
+                                <div class="row">
+                                    <div class="col-3 col-md-2 col-lg-2">
+                                        <span>Lent_at</span><br>
+                                        <span>Due_at</span><br>
+                                    </div>
+                                    <div class="col-9 col-md-10 col-lg-10">
+                                        <span>{{ $cart->lent_at }}</span><br>
+                                        <span>{{ $cart->due_at }}</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-4 col-md-4 col-md-2 col-lg-5">
-                                <form action="/checkout" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="lent_at" value="{{ $cart->lent_at }}">
-                                    <input type="hidden" name="due_at" value="{{ $cart->due_at }}">
-                                    <input type="hidden" name="price" value="{{ $cart->book->price }}">
-                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                    <input type="hidden" name="book_id" value="{{ $cart->book->id }}">
-                                    @if ($cart->book->stock == 0)
-                                        <button class="btn btn-sm btn-danger" disabled>Is Empty</button>
-                                    @endif
-                                    @if(! is_null($cart->book->deleted_at))
-                                        <button class="btn btn-sm btn-danger" disabled>Is Empty</button>
-                                    @else
-                                        <button type="submit" class="btn btn-sm btn-primary">Checkout</button>
-                                    @endif
-                                </form>
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="col-4 col-md-2 col-sm-3 col-lg-2">
+                                <a href="/checkout/{{ $cart->id }}/confirm" class="btn btn-sm btn-primary">Checkout</a>
                             </div>
                         </div>
                         <hr>

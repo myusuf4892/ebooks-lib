@@ -8,9 +8,9 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
-          <li><a class="nav-link scrollto" href="#services">Catalog</a></li>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          <li><a class="nav-link scrollto" href="/#about">About Us</a></li>
+          <li><a class="nav-link scrollto" href="/books">Catalog</a></li>
           @auth()
             @if (Auth::user()->role->id == 1)
             <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <ion-icon name="chevron-down-outline"></ion-icon></a>
@@ -48,7 +48,7 @@
             </ul>
           </li>
           @endguest
-          <li><a class="nav-link scrollto" href="#footer">Contact</a></li>
+          <li><a class="nav-link scrollto" href="/#footer">Contact</a></li>
         </ul>
         <ion-icon name="apps-outline" class="mobile-nav-toggle apps-outline"></ion-icon>
       </nav><!-- .navbar -->
