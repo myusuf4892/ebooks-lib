@@ -18,7 +18,7 @@ class BlogSeeder extends Seeder
         Blog::create([
             'brand' => 'Tveloper',
             'linkedIn' => 'https://linkedIn.id',
-            'contact' => '',
+            'contact' => '085775088586',
             'created_by' => 'https://tveloper.id/we'
         ]);
     }

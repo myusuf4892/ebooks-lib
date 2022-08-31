@@ -57,9 +57,9 @@
             </div>
         </div>
         <div class="card shadow mb-4">
-            @if (session()->has('errorBook'))
+            @if (session()->has('error'))
             <div class="alert alert-danger mt-2" id="error-alert" role="alert">
-                <strong>{{ session('errorBook') }}</strong>
+                <strong>{{ session('error') }}</strong>
             </div>
             @endif
             @if (session()->has('success'))
@@ -78,8 +78,8 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class=" table-responsive table-striped table-sm">
-                    <table class="table table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <div class="table-responsive table-sm table-striped">
+                    <table class="table table-hover table-bordered" width="100%" cellspacing=0>
                         <thead class="bg-primary text-center text-light">
                             <tr>
                                 <th>No</th>
@@ -98,7 +98,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody class="text-xs">
+                        <tbody>
                             @foreach ($reports as $report)
                             <tr>
                                 <td>{{ ($reports->currentPage() - 1) * $reports->perPage() + $loop->iteration }}</td>
@@ -113,25 +113,11 @@
                                 <td>{{ $report->user->name }}</td>
                                 <td>{{ $report->payment_status }}</td>
                                 <td>Rp. {{ number_format($report->price, 0, ',', '.') }}</td>
-                                <td>Rp.
-                                    <?php
-                                        $fdate = $report->due_at;
-                                        $tdate = $report->return_at;
-                                        $datetime1 = new DateTime($fdate);
-                                        $datetime2 = new DateTime($tdate);
-                                        if($datetime1 > $datetime2) {
-                                            echo 0;
-                                        } else {
-                                            $interval = $datetime1->diff($datetime2);
-                                            $days = $interval->format('%a');
-                                            echo number_format($days * 5000, 0, ',', '.');
-                                        }
-                                    ?>
-                                </td>
+                                <td>Rp. {{ number_format($report->amercement, 0, ',', '.') }}</td>
                                 <td>
                                     <form action="/admin/reports/confirm/{{ $report->id }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-warning" @if($report->status_returned == 'already borrowed' || is_null($report->return_at)) disabled @endif>Returned</button>
+                                        <button type="submit" class="btn btn-sm btn-warning" @if($report->status_returned == 'already borrowed') disabled @endif>Returned</button>
                                     </form>
                                 </td>
                             </tr>

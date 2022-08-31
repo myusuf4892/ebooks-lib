@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             BookSeeder::class,
             BlogSeeder::class,
-            LentSeeder::class,
+            //LentSeeder::class,
         ]);
     }
 }

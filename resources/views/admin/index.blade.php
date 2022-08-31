@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title',  $blogs->brand)
+@section('title',  $blog->brand)
 
 @section('content')
 <!-- Main Content -->

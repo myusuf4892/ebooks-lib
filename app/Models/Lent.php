@@ -28,6 +28,7 @@ class Lent extends Model
         'postal_code',
         'street',
         'snap_token',
+        'donatur_id',
         'user_id',
         'book_id',
     ];

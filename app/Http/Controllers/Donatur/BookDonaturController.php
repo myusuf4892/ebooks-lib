@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Donatur;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 use App\Models\Category;
 use App\Models\Book;
 use App\Models\Blog;
@@ -82,7 +84,7 @@ class BookDonaturController extends Controller
         $categories = Category::all();
         $blog = Blog::first();
 
-        return view('admin.books.edit', compact(
+        return view('donatur.books.edit', compact(
             'title',
             'bookDetail',
             'categories',
@@ -93,7 +95,7 @@ class BookDonaturController extends Controller
     public function update(Request $request, $id)
     {
         $c = $request->validate([
-            'isbn' => 'required|unique:books',
+            'isbn' => 'required',
             'image' =>'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'title' => 'required',
             'author' => 'required',
@@ -102,7 +104,6 @@ class BookDonaturController extends Controller
             'price' => 'required',
             'stock' => 'required',
             'status' => 'required',
-            'user_id' => 'required',
             'category_id' => 'required'
         ]);
 
@@ -131,8 +132,8 @@ class BookDonaturController extends Controller
             $c['image'] = $filename;
         }
 
-        Book::where('id', $id)->update($c);
         $data = Book::find($id);
+        $data->update($c);
 
         return redirect('/donatur/books/user/' . $data->user_id)->with('success', 'Book has been updated!');
     }

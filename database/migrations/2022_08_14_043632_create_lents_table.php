@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('postal_code');
             $table->string('street');
             $table->string('snap_token', 36);
+            $table->integer('donatur_id');
             $table->foreignId('user_id');
             $table->foreignId('book_id');
             $table->softDeletes();

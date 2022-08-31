@@ -20,6 +20,16 @@
 
     <link rel="stylesheet" type="text/css" href="https://bookstories.000webhostapp.com/admin/css/trix.css">
     <script type="text/javascript" src="https://bookstories.000webhostapp.com/admin/js/trix.js"></script>
+    
+    <style class="text/css">
+      table thead tr th{
+        font-size: 12px;
+        padding: 1000px;
+      }
+      table tbody tr td{
+        font-size: 10px;
+      }
+    </style>
 
 </head>
 
@@ -62,5 +72,4 @@
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
-
 </html>

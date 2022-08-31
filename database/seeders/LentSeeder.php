@@ -33,7 +33,7 @@ class LentSeeder extends Seeder
             'city' => 'Kota Tangerang',
             'postal_code' => '15138',
             'street' => 'Jl Kecipir raya',
-            'snap_token' => '53ffd5eb-3596-4f31-b220-ee1bd796c8a8',
+            'snap_token' => '<53ffd5eb-3596-4f31</53ffd5eb-3596-4f31->b220-ee1bd796c8a8',
             'user_id' => 3,
             'book_id' => 1,
         ]);

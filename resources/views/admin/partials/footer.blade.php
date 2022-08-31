@@ -1,7 +1,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; {{ $blogs->brand }} 2022</span>
+            <span>Copyright &copy; {{ $blog->brand }} 2022</span>
         </div>
     </div>
 </footer>

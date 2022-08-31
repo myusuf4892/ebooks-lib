@@ -17,7 +17,7 @@ class PageController extends Controller
     public function index()
     {
         $title = 'Home';
-        $books = Book::paginate(6);
+        $books = Book::where('status', 'verified')->paginate(6);
         $blog = Blog::first();
 
         $countCart = Cart::get()->count();
@@ -32,7 +32,7 @@ class PageController extends Controller
     public function books()
     {
         $title = 'Books';
-        $books = Book::paginate(12);
+        $books = Book::where('status', 'verified')->paginate(12);
         $blog = Blog::first();
         return view('pages.books', compact(
             'title',
@@ -98,17 +98,21 @@ class PageController extends Controller
         $userID = $cart->user->id;
 
         $lent = Lent::withTrashed()->where('user_id', $userID)->where('status_returned', 'still borrowed')->first();
-        $lentID = Lent::withTrashed()->find($lent->id);
-        $status = $lentID->status_returned;
-
-        if ($status == 'still borrowed') {
-            return redirect('/carts/user/' . $userID)->with('error', 'user can only borrow one book!');
-        }
-        return view('pages.confirmCheckout', compact(
+        
+        if ($lent == null) {
+          return view('pages.confirmCheckout', compact(
             'title',
             'blog',
             'cart'
-        ));
+          ));
+        }
+        
+        $lentID = Lent::withTrashed()->find($lent->id);
+        $status = $lentID->status_returned;
+  
+        if ($status == 'still borrowed') {
+            return redirect('/carts/user/' . $userID)->with('error', 'user can only borrow one book!');
+        }
     }
 
     public function checkout(Request $request)
@@ -158,6 +162,7 @@ class PageController extends Controller
             'postal_code' => $request->postal_code,
             'street' => $request->street,
             'snap_token' => $snapToken,
+            'donatur_id' => $request->donatur_id,
             'user_id' => $request->user_id,
             'book_id' => $request->book_id
         ]);

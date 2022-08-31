@@ -1,6 +1,6 @@
 @extends('donatur.layouts.main')
 
-@section('title',  $blog->brand)
+@section('title', $blog->brand)
 
 @section('content')
             <!-- Main Content -->

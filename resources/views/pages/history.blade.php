@@ -37,19 +37,27 @@
                         <span>{{ $item->order_id }}</span><br>
                         <span>{{ $item->lent_at }}</span><br>
                         <span>{{ $item->due_at }}</span><br>
-                        <span>{{ $item->return_at }}</span><br>
+                        @if ($item->return_at == null)
+                        <span class="text-uppercase text-warning">
+                          not yet
+                        </span><br>
+                        @else
+                        <span>
+                          {{ $item->return_at }}
+                        </span><br>
+                        @endif
                         <span>{{ $item->payment_status }}</span><br>
-                        <span>{{ $item->status_returned }}</span><br>
+                        @if ($item->status_returned == 'still borrowed')
+                        <span class="text-uppercase text-danger">
+                          borrowed
+                        </span><br>
+                        @else
+                        <span class="text-uppercase text-success">
+                          returned
+                        </span><br>
+                        @endif
                         <span>{{ $item->price }}</span><br>
                         <span>{{ $item->amercement }}</span>
-                    </div>
-                </div>
-                <div class="row justify-content-end">
-                    <div class="col-4 col-sm-3 col-lg-2">
-                        <form action="/books/return/{{ $item->id }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-sm btn-primary @if(! is_null($item->return_at)) disabled @endif">Return Book</button>
-                        </form>
                     </div>
                 </div>
                 <hr>

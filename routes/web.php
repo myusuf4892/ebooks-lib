@@ -89,6 +89,8 @@ Route::get('/donatur/reports/user/{id}', [ReportDonaturController::class, 'index
  */
 Route::get('/donatur/books/user/{id}', [BookDonaturController::class, 'index'])->middleware('donatur');
 Route::post('/donatur/books', [BookDonaturController::class, 'store'])->middleware('donatur');
+Route::get('/donatur/books/{id}/edit', [BookDonaturController::class, 'edit'])->middleware('donatur');
+Route::put('/donatur/books/{id}', [BookDonaturController::class, 'update'])->middleware('donatur');
 /**
  * Route User
  */

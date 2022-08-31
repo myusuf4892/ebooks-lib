@@ -18,6 +18,7 @@
                                 <input type="hidden" name="lent_at" value="{{ $cart->lent_at }}">
                                 <input type="hidden" name="due_at" value="{{ $cart->due_at }}">
                                 <input type="hidden" name="price" value="{{ $cart->book->price }}">
+                                <input type="hidden" name="donatur_id" value="{{ $cart->book->user->id }}">
                                 <input type="hidden" name="user_id" value="{{ $cart->user_id }}">
                                 <input type="hidden" name="book_id" value="{{ $cart->book->id }}">
                                 <div class="mb-3">

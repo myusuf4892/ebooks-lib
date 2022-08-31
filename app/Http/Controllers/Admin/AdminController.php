@@ -21,14 +21,14 @@ class AdminController extends Controller
         $netAmount = Lent::withTrashed()->where('payment_status', 'paid')->orderBy('price')->sum('price') + $amercement;
 
         $countUser = $dataUser->count();
-        $blogs = Blog::first();
+        $blog = Blog::first();
         return view('admin.index', compact(
             'title',
             'dataUser',
             'countUser',
             'grossAmount',
             'netAmount',
-            'blogs'
+            'blog'
         ));
     }
 
@@ -36,12 +36,12 @@ class AdminController extends Controller
     {
         $title = 'Admin | Users';
         $users = User::orderBy('updated_at', 'DESC')->paginate(10);
-        $blogs = Blog::first();
+        $blog = Blog::first();
 
         return view('admin.users.index', compact(
             'title',
             'users',
-            'blogs'
+            'blog'
         ));
     }
 
@@ -60,12 +60,12 @@ class AdminController extends Controller
     {
         $title = 'Admin | Users';
         $user = User::where('id', $id)->first();
-        $blogs = Blog::first();
+        $blog = Blog::first();
 
         return view('admin.users.edit', compact(
             'title',
             'user',
-            'blogs'
+            'blog'
         ));
     }
 

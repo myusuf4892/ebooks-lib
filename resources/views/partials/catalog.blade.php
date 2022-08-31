@@ -7,7 +7,7 @@
 
       <div class="row justify-content-end mb-3">
         <div class="col-4 col-lg-2 text-end">
-            <a href="/books" class="">see all books</a>
+            <a href="/books" class=""><ion-icon name="book-outline"></ion-icon> see all books</a>
         </div>
       </div>
 

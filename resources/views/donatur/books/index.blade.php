@@ -36,6 +36,7 @@
                     <table class="table table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead class="bg-primary text-xs text-light">
                             <tr>
+                                <th>No</th>
                                 <th>Isbn</th>
                                 <th>Category</th>
                                 <th>Title</th>
@@ -52,16 +53,23 @@
                         <tbody class="text-xs">
                             @foreach ($books as $book)
                             <tr>
+                                <td>{{ ($books->currentPage() - 1) * $books->perPage() + $loop->iteration }}</td>
                                 <td>{{ $book->isbn }}</td>
                                 <td>{{ $book->category->name }}</td>
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->publisher }}</td>
-                                <td>Rp. {{ number_format($book->price, 2, ',', '.') }}</td>
+                                <td>Rp. {{ number_format($book->price, 0, ',', '.') }}</td>
                                 <td>{{ $book->stock }}</td>
                                 <td>{{ $book->user->name }}</td>
                                 <td>{{ $book->created_at }}</td>
-                                <td>{{ $book->status }}</td>
+                                <td class="text-center">
+                                  @if ($book->status == 'verified')
+                                  <span class="text-uppercase text-success text-bold">{{ $book->status }}</span>
+                                  @else
+                                  <span class="text-uppercase text-danger text-bold">{{ $book->status }}</span>
+                                  @endif
+                                  </td>
                                 <td>
                                     <form action="/donatur/books/{{ $book->id }}" method="POST">
                                         @method('DELETE')
