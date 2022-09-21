@@ -17,14 +17,6 @@ class RegisterController extends Controller
         return view('auth.register', $data);
     }
 
-    public function donatur()
-    {
-        $data['title'] = 'Registration Donatur Form';
-        $data['roleDonatur'] = 2;
-        $data['status'] = 'verification';
-        return view('auth.donatur', $data);
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -46,6 +38,6 @@ class RegisterController extends Controller
         ]);
 
         $user->save();
-        return redirect('/login')->with('success', 'Registration success');
+        return redirect('/login')->with('success', 'Registration success!');
     }
 }

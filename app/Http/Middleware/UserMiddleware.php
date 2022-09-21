@@ -21,7 +21,10 @@ class UserMiddleware
         {
             return $next($request);
 
-        }else{
+        } else if(Auth::check() && Auth::user()->role->id == 2) {
+            return $next($request);
+
+        } else{
 
             return redirect('login');
         }

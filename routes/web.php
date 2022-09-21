@@ -27,10 +27,19 @@ use App\Http\Controllers\Admin\CategoryController;
 |
 */
 
+/**
+ * Authentication app
+ */
+Route::get('/register', [RegisterController::class, 'main']);
+Route::get('/register/donatur', [RegisterController::class, 'donatur']);
+Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/login', [LoginController::class, 'main']);
+Route::post('/login', [LoginController::class, 'store']);
+Route::get('/logout', [UserController::class, 'logout']);
+
 Route::get('/', [PageController::class, 'index']);
 Route::get('/books', [PageController::class, 'books']);
 Route::get('/books/{id}', [PageController::class, 'show'])->middleware('user');
-Route::post('/books/return/{id}', [PageController::class, 'returned'])->middleware('user');
 
 Route::post('/carts', [PageController::class, 'cart'])->middleware('user');
 Route::get('/carts/user/{id}', [PageController::class, 'cartDetail'])->middleware('user');
@@ -44,14 +53,12 @@ Route::post('/payment/confirm', [PageController::class, 'confirmPayment'])->midd
 Route::get('/history/user/{id}', [PageController::class, 'historyPayment'])->middleware('user');
 
 /**
- * Authentication app
+ * Route User
  */
-Route::get('/register', [RegisterController::class, 'main']);
-Route::get('/register/donatur', [RegisterController::class, 'donatur']);
-Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/login', [LoginController::class, 'main']);
-Route::post('/login', [LoginController::class, 'store']);
-Route::get('/logout', [UserController::class, 'logout']);
+Route::get('/profile/{id}', [UserController::class, 'profile'])->middleware('user');
+Route::put('/users/{id}', [UserController::class, 'update'])->middleware('user');
+Route::put('/users/{id}/upgrade', [UserController::class, 'upgrade'])->middleware('user');
+
 /**
  * Route Admin
  */
@@ -84,6 +91,7 @@ Route::get('/admin/reports/print', [ReportController::class, 'printPdf'])->middl
  */
 Route::get('/donatur', [DonaturController::class, 'index'])->middleware('donatur');
 Route::get('/donatur/reports/user/{id}', [ReportDonaturController::class, 'index'])->middleware('donatur');
+Route::get('/donatur/{id}/reports/print', [ReportDonaturController::class, 'printPdf'])->middleware('donatur');
 /**
  * Donatur Books
  */
@@ -91,11 +99,4 @@ Route::get('/donatur/books/user/{id}', [BookDonaturController::class, 'index'])-
 Route::post('/donatur/books', [BookDonaturController::class, 'store'])->middleware('donatur');
 Route::get('/donatur/books/{id}/edit', [BookDonaturController::class, 'edit'])->middleware('donatur');
 Route::put('/donatur/books/{id}', [BookDonaturController::class, 'update'])->middleware('donatur');
-/**
- * Route User
- */
-Route::get('/users/profile', function () {
-    $data['title'] = 'Dashboard';
-    return view('user.index', $data);
-})->middleware('user');
 

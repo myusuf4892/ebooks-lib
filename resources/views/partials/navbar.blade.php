@@ -24,6 +24,9 @@
             <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <ion-icon name="chevron-down-outline"></ion-icon></a>
               <ul>
                 <li><a href="/donatur">Dashboard</a></li>
+                <li><a href="/carts/user/{{ Auth::user()->id }}" class="{{ Request::is('/carts/user/*') ? 'active' : '' }}">Cart <span class="text-danger"></span></a></li>
+                <li><a href="/checkout/user/{{ Auth::user()->id }}">Checkout</a></li>
+                <li><a href="/history/user/{{  Auth::user()->id }}">History</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
@@ -31,7 +34,7 @@
             @if (Auth::user()->role->id == 3)
             <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <ion-icon name="chevron-down-outline"></ion-icon></a>
               <ul>
-                <li><a href="/profile">Profile</a></li>
+                <li><a href="/profile/{{ Auth::user()->id }}">Profile</a></li>
                 <li><a href="/carts/user/{{ Auth::user()->id }}" class="{{ Request::is('/carts/user/*') ? 'active' : '' }}">Cart <span class="text-danger"></span></a></li>
                 <li><a href="/checkout/user/{{ Auth::user()->id }}">Checkout</a></li>
                 <li><a href="/history/user/{{  Auth::user()->id }}">History</a></li>
@@ -48,7 +51,7 @@
             </ul>
           </li>
           @endguest
-          <li><a class="nav-link scrollto" href="#footer">Contact</a></li>
+          <li><a class="nav-link scrollto" href="#">Contact</a></li>
         </ul>
         <ion-icon name="apps-outline" class="mobile-nav-toggle apps-outline"></ion-icon>
       </nav><!-- .navbar -->

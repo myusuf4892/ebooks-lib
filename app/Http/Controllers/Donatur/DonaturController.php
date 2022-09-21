@@ -11,7 +11,7 @@ class DonaturController extends Controller
 {
     public function index()
     {
-        $title = 'Dashboard';
+        $title = 'Donatur | Dashboard';
         $blog = Blog::first();
         return view('donatur.index', compact(
             'title',

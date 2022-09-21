@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'name' => 'Agus Salim',
-            'email' => 'donatur@gmail.com',
+            'email' => 'agus@gmail.com',
             'phone' => '0898939339',
             'password' => Hash::make('donatur123'),
             'status' => 'active',
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'name' => 'Ambar',
-            'email' => 'member1@gmail.com',
+            'email' => 'ambar@gmail.com',
             'phone' => '0888889292',
             'password' => Hash::make('member123'),
             'status' => 'active',
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'name' => 'Bonita',
-            'email' => 'member2@gmail.com',
+            'email' => 'bonita@gmail.com',
             'phone' => '0899991010',
             'password' => Hash::make('member234'),
             'status' => 'active',

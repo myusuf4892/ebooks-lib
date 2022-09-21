@@ -53,9 +53,6 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="/register/donatur">Register as donatur</a>
-                        </div>
-                        <div class="text-center">
                             <a class="small" href="/login">Already have an account? Login!</a>
                         </div>
                     </div>

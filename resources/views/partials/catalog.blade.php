@@ -14,11 +14,11 @@
       <div class="row g-5">
         @foreach ($books as $book)
         <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-            <div class="box">
-                <div class="image-fluid mb-3"><img src="{{ asset('images/'. $book->image) }}" alt=""></div>
-                <h4 class="title"><a href="/books/{{ $book->id }}">{{ $book->title }}</a></h4>
-                <p class="price">{{ $book->price }}</p>
-            </div>
+          <div class="box">
+              <div class="image-fluid mb-3"><img src="{{ asset('images/'. $book->image) }}" alt=""></div>
+              <h4 class="title"><a href="/books/{{ $book->id }}">{{ $book->title }}</a></h4>
+              <p class="price">{{ $book->price }}</p>
+          </div>
         </div>
         @endforeach
       </div>

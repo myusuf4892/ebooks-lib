@@ -8,22 +8,25 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="/">Home</a></li>
-          <li><a class="nav-link scrollto" href="/#about">About Us</a></li>
-          <li><a class="{{ Request::is('/books') ? 'active' : '' }}" href="/books">Catalog</a></li>
+          <li><a class="nav-link scrollto" href="/">Home</a></li>
+          <li><a class="nav-link" href="/#about">About Us</a></li>
+          <li><a class="nav-link {{ Request::is('books') ? 'active' : '' }}" href="/books">Catalog</a></li>
           @auth()
             @if (Auth::user()->role->id == 1)
             <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <ion-icon name="chevron-down-outline"></ion-icon></a>
               <ul>
-                <li><a href="/admin">Dashboard</a></li>
+                <li><a class="nav-link {{ Request::is('admin') ? 'active' : '' }}" href="/admin">Dashboard</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
             @endif
-            @if (Auth::user()->role->id == 2)
-            <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <ion-icon name="chevron-down-outline"></ion-icon></a>
+            @if (Auth::user()->role->id == 2 && Auth::user()->status == 'active')
+            <li class="dropdown"><a href="#" class="nav-link {{ Request::is('profile*') ? 'active' : '' }}"><span>{{ Auth::user()->name }}</span> <ion-icon name="chevron-down-outline"></ion-icon></a>
               <ul>
                 <li><a href="/donatur">Dashboard</a></li>
+                <li><a href="/carts/user/{{ Auth::user()->id }}" class="nav-link {{ Request::is('carts/user*') ? 'active' : '' }}">Cart <span class="text-danger"></span></a></li>
+                <li><a href="/checkout/user/{{ Auth::user()->id }}" class="nav-link {{ Request::is('checkout/user*') ? 'active' : '' }}">Checkout</a></li>
+                <li><a href="/history/user/{{  Auth::user()->id }}" class="nav-link {{ Request::is('history/user*') ? 'active' : '' }}">History</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
@@ -31,10 +34,10 @@
             @if (Auth::user()->role->id == 3)
             <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <ion-icon name="chevron-down-outline"></ion-icon></a>
               <ul>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/carts/user/{{ Auth::user()->id }}" class="{{ Request::is('/carts/user/*') ? 'active' : '' }}">Cart <span class="text-danger"></span></a></li>
-                <li><a href="/checkout/user/{{ Auth::user()->id }}">Checkout</a></li>
-                <li><a href="/history/user/{{  Auth::user()->id }}">History</a></li>
+                <li><a href="/profile/{{ Auth::user()->id }}" class="nav-link {{ Request::is('profile*') ? 'active' : '' }}">Profile</a></li>
+                <li><a href="/carts/user/{{ Auth::user()->id }}" class=" nav-link {{ Request::is('carts/user/*') ? 'active' : '' }}">Cart <span class="text-danger"></span></a></li>
+                <li><a href="/checkout/user/{{ Auth::user()->id }}" class="nav-link {{ Request::is('checkout/user*') ? 'active' : '' }}">Checkout</a></li>
+                <li><a href="/history/user/{{  Auth::user()->id }}" class="nav-link {{ Request::is('history/user*') ? 'active' : '' }}">History</a></li>
                 <li><a href="/logout">Logout</a></li>
               </ul>
             </li>
@@ -48,7 +51,7 @@
             </ul>
           </li>
           @endguest
-          <li><a class="nav-link scrollto" href="/#footer">Contact</a></li>
+          <li><a class="nav-link scrollto" href="/#">Contact</a></li>
         </ul>
         <ion-icon name="apps-outline" class="mobile-nav-toggle apps-outline"></ion-icon>
       </nav><!-- .navbar -->

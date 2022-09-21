@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Admin | Print Report</title>
+    <title>Print Report</title>
     <style class="text/css">
         body{
             counter-reset: chapternum figurenum;
@@ -16,12 +16,12 @@
             color: #fff;
             text-align: center;
             background: rgb(116, 113, 113);
-            font-size: 9px;
+            font-size: 8px;
         }
         table tbody tr td{
             border-collapse: collapse;
             border: 1px solid black;
-            font-size: 8px;
+            font-size: 7px;
         }
     </style>
 </head>
@@ -61,21 +61,7 @@
                     <td>{{ $report->status_returned }}</td>
                     <td class="text-center">{{ $report->payment_status }}</td>
                     <td>Rp. {{ number_format($report->price, 0, ',', '.') }}</td>
-                    <td>Rp.
-                        <?php
-                            $fdate = $report->due_at;
-                            $tdate = $report->return_at;
-                            $datetime1 = new DateTime($fdate);
-                            $datetime2 = new DateTime($tdate);
-                            if($datetime1 > $datetime2) {
-                                echo 0;
-                            } else {
-                                $interval = $datetime1->diff($datetime2);
-                                $days = $interval->format('%a');
-                                echo number_format($days * 5000, 0, ',', '.');
-                            }
-                        ?>
-                    </td>
+                    <td>Rp. {{ number_format($report->amercement, 0, ',', '.') }}</td>
                 </tr>
             @endforeach
         </tbody>

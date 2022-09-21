@@ -70,8 +70,11 @@
             <div class="card-header py-3">
                 <div class="container">
                     <div class="row">
-                        <div class="col-10 col-sm-11 col-lg-11">
+                        <div class="col-10 col-sm-10 col-lg-10">
                             <h6 class="font-weight-bold text-primary mt-2">Reports Table</h6>
+                        </div>
+                        <div class="col-2 col-sm-2 col-lg-2">
+                            <a target="_blank" href="/donatur/{{ Auth::user()->id }}/reports/print" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                         </div>
                     </div>
                 </div>

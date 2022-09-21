@@ -98,7 +98,7 @@ class PageController extends Controller
         $userID = $cart->user->id;
 
         $lent = Lent::withTrashed()->where('user_id', $userID)->where('status_returned', 'still borrowed')->first();
-        
+
         if ($lent == null) {
           return view('pages.confirmCheckout', compact(
             'title',
@@ -106,10 +106,10 @@ class PageController extends Controller
             'cart'
           ));
         }
-        
+
         $lentID = Lent::withTrashed()->find($lent->id);
         $status = $lentID->status_returned;
-  
+
         if ($status == 'still borrowed') {
             return redirect('/carts/user/' . $userID)->with('error', 'user can only borrow one book!');
         }
@@ -185,17 +185,21 @@ class PageController extends Controller
         $title = 'Checkout';
         $blog = Blog::first();
         $lents = Lent::where('user_id', $id)->get();
+        $midtransClient = 'SB-Mid-client-DRFMEnJNYkuwyJkM';
 
         return view('pages.checkout', compact(
             'title',
             'blog',
-            'lents'
+            'lents',
+            'midtransClient'
         ));
     }
 
     public function payment(Request $request)
     {
         $json = json_decode($request->get('json'));
+
+        return $json;
 
         $status = 'pending';
 
@@ -225,14 +229,5 @@ class PageController extends Controller
             'blog',
             'data'
         ));
-    }
-
-    public function returned($id)
-    {
-        $date = Carbon::now()->format('Y-m-d H:i:s');
-
-        Lent::withTrashed()->find($id)->update(['return_at' => $date]);
-
-        return Back()->with('success', 'book success returned!');
     }
 }
