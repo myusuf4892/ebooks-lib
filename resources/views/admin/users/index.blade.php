@@ -51,7 +51,7 @@
                                 <td>{{ $user->role->name }}</td>
                                 <td class="text-center text-uppercase text-bold text-success">{{ $user->status }}</td>
                                 <td class="text-center">
-                                    <form action="/admin/user/verification" method="POST">
+                                    <form action="/admin/users/verification" method="POST">
                                     @csrf
                                     <input type="hidden" name="user_id" value="{{ $user->id }}">
                                     <input type="hidden" name="status" value="active">

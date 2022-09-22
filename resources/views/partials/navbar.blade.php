@@ -23,7 +23,7 @@
             @if (Auth::user()->role->id == 2)
             <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <ion-icon name="chevron-down-outline"></ion-icon></a>
               <ul>
-                <li><a href="/donatur">Dashboard</a></li>
+                <li><a href="/donatur/{{ Auth::user()->id }}">Dashboard</a></li>
                 <li><a href="/carts/user/{{ Auth::user()->id }}" class="{{ Request::is('/carts/user/*') ? 'active' : '' }}">Cart <span class="text-danger"></span></a></li>
                 <li><a href="/checkout/user/{{ Auth::user()->id }}">Checkout</a></li>
                 <li><a href="/history/user/{{  Auth::user()->id }}">History</a></li>

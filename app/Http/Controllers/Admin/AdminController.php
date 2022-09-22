@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 use App\Models\Blog;
 use App\Models\Lent;
 use App\Models\User;
+use Carbon\Carbon;
+use Image;
 
 class AdminController extends Controller
 {
@@ -30,6 +34,58 @@ class AdminController extends Controller
             'netAmount',
             'blog'
         ));
+    }
+
+    public function profile($id)
+    {
+        $title = 'Admin | Profile';
+        $blog = Blog::first();
+        $user = User::find($id);
+
+        return view('admin.partials.profile', compact(
+            'title',
+            'blog',
+            'user'
+        ));
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $c = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'avatar' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+        ]);
+
+        $imgSize = File::size($request->file('avatar'));
+        if ($imgSize == null) {
+            $user = User::find($id);
+            $c['avatar'] = $user->avatar;
+        }
+        if ($imgSize != null) {
+            $image = $request->file('avatar');
+            $imgName = '.' . Carbon::now()->format('YmdHis');
+            $filename = $imgName.'.'.$image->extension();
+
+            $destinationPath = public_path('images/avatar'.'/');
+            $img = Image::make($image->path());
+            $img->resize(183, 275, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $img->save($destinationPath . $filename);
+            $user = User::find($id);
+            if (File::exists($destinationPath . $user->avatar)) {
+                File::delete($destinationPath . $user->avatar);
+            }
+
+            $c['avatar'] = $filename;
+        }
+
+        $data = User::find($id)->update($c);
+
+        return back()->with('success', 'Profile has been updated!');
     }
 
     public function getUser()
@@ -56,7 +112,7 @@ class AdminController extends Controller
         return redirect('/admin/users')->with('success', 'User has been Verified!');
     }
 
-    public function edit($id)
+    public function editUser($id)
     {
         $title = 'Admin | Users';
         $user = User::where('id', $id)->first();

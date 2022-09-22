@@ -32,7 +32,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseManagement"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Mangement Application</span>
+            <span>Management App</span>
         </a>
         <div id="collapseManagement" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">

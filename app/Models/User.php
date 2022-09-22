@@ -19,6 +19,7 @@ class User extends Authenticable
         'phone',
         'email',
         'password',
+        'avatar',
         'status',
         'role_id',
     ];

@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/donatur">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/donatur/{{ Auth::user()->id }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <ion-icon name="logo-electron" class="text-bold text-lg"></ion-icon>
         </div>
@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="/donatur">
+        <a class="nav-link" href="/donatur/{{ Auth::user()->id }}">
             <ion-icon name="speedometer-outline"></ion-icon>
             <span>Dashboard</span></a>
     </li>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('password');
+            $table->string('avatar')->nullable();
             $table->enum('status', ['active', 'verification']);
             $table->foreignId('role_id');
             $table->timestamps();

@@ -10,7 +10,7 @@
     <hr>
     <div class="container">
         @if (session()->has('success'))
-            <div class="alert alert-success mt-2" id="success-alert" role="alert">
+            <div class="alert alert-success mt-2" id="alert-pop" role="alert">
                 <strong>{{ session('success') }}</strong>
             </div>
         @endif

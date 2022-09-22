@@ -42,18 +42,6 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-                        {{-- <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text" for="category">Categories</label>
-                            </div>
-                            <select name="category_id" class="custom-select" id="category">
-                                <option selected class="text-lg" value="{{ old('category_id', $bookDetail->category_id) }}">{{ $bookDetail->category->name }}</option>
-                                <option>Choose...</option>
-                                @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div> --}}
                         <button type="submit" class="btn btn-warning">Update</button>
                     </form>
                 </div>

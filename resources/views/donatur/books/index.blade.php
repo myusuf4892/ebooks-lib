@@ -8,12 +8,12 @@
     <div class="container-fluid">
         <div class="card shadow mb-4">
             @if (session()->has('errorBook'))
-            <div class="alert alert-danger mt-2" id="error-alert" role="alert">
+            <div class="alert alert-danger mt-2" id="alert-pop" role="alert">
                 <strong>{{ session('errorBook') }}</strong>
             </div>
             @endif
             @if (session()->has('success'))
-            <div class="alert alert-success mt-2" id="success-alert" role="alert">
+            <div class="alert alert-success mt-2" id="alert-pop" role="alert">
                 <strong>{{ session('success') }}</strong>
             </div>
             @endif

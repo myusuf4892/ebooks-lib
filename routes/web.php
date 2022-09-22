@@ -63,6 +63,8 @@ Route::put('/users/{id}/upgrade', [UserController::class, 'upgrade'])->middlewar
  * Route Admin
  */
 Route::get('/admin', [AdminController::class, 'index'])->middleware('admin');
+Route::get('/admin/profile/{id}', [AdminController::class, 'profile'])->middleware('admin');
+Route::put('/admin/profile/{id}', [AdminController::class, 'updateProfile'])->middleware('admin');
 Route::put('/admin/settings/{id}', [AdminController::class, 'setting'])->middleware('admin');
 /**
  * Admin Books
@@ -81,15 +83,15 @@ Route::post('admin/books/categories', [CategoryController::class, 'store'])->mid
  */
 Route::get('/admin/users', [AdminController::class, 'getUser'])->middleware('admin');
 Route::post('/admin/users', [AdminController::class, 'update'])->middleware('admin');
-Route::get('/admin/users/{id}/edit', [AdminController::class, 'edit'])->middleware('admin');
-Route::post('/admin/user/verification', [AdminController::class, 'userVerification'])->middleware('admin');
+Route::get('/admin/users/{id}/edit', [AdminController::class, 'editUser'])->middleware('admin');
+Route::post('/admin/users/verification', [AdminController::class, 'userVerification'])->middleware('admin');
 Route::get('/admin/reports', [ReportController::class, 'index'])->middleware('admin');
 Route::post('/admin/reports/confirm/{id}', [ReportController::class, 'bookReturned'])->middleware('admin');
 Route::get('/admin/reports/print', [ReportController::class, 'printPdf'])->middleware('admin');
 /**
  * Report Donatur
  */
-Route::get('/donatur', [DonaturController::class, 'index'])->middleware('donatur');
+Route::get('/donatur/{id}', [DonaturController::class, 'index'])->middleware('donatur');
 Route::get('/donatur/reports/user/{id}', [ReportDonaturController::class, 'index'])->middleware('donatur');
 Route::get('/donatur/{id}/reports/print', [ReportDonaturController::class, 'printPdf'])->middleware('donatur');
 /**

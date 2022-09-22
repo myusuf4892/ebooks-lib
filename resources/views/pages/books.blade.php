@@ -16,7 +16,8 @@
         <div class="box">
             <div class="image-fluid mb-3"><img src="{{ asset('images/'. $book->image) }}" alt=""></div>
             <h4 class="title"><a href="/books/{{ $book->id }}">{{ $book->title }}</a></h4>
-            <p class="price">{{ $book->price }}</p>
+            <p class="text-center">Quantity {{ $book->stock }}</p>
+            <p class="price">Rp. {{ number_format($book->price, 0, ',', '.') }}</p>
         </div>
         </div>
         @endforeach

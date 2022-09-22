@@ -109,7 +109,7 @@ class BookDonaturController extends Controller
 
         $imgSize = File::size($request->file('image'));
         if ($imgSize == null) {
-            $book = Book::where('id', $id)->first();
+            $book = Book::find($id);
             $c['image'] = $book->image;
         }
         if ($imgSize != null) {
@@ -124,7 +124,7 @@ class BookDonaturController extends Controller
             });
 
             $img->save($destinationPath . $filename);
-            $book = Book::where('id', $id)->first();
+            $book = Book::find($id);
             if (File::exists($destinationPath . $book->image)) {
                 File::delete($destinationPath . $book->image);
             }

@@ -15,7 +15,7 @@
                         <span>Publisher: <span class="text-primary">{{ $book->publisher }}</span></span>
                     </div>
                     <div class="col-lg-8 mt-2 mb-3">
-                        <span>{{ $book->description }}</span>
+                        <span>{{ $description }}</span>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,11 @@
                         </select>
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <input type="hidden" name="book_id" value="{{ $book->id }}">
-                        <button type="submit" class="btn btn-sm btn-primary">Add Cart</button>
+                        @if ($book->user_id == Auth::user()->id)
+                        <button type="submit" class="btn btn-sm btn-danger" disabled>Cannot Borrow</button>
+                        @else
+                        <button type="submit" class="btn btn-sm btn-primary">Cart</button>
+                        @endif
                     </form>
                 </div>
             </div>

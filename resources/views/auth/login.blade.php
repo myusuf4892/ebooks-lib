@@ -10,12 +10,12 @@
 
         <div class="col-xl-10 col-lg-12 col-md-9">
             @if (session()->has('loginError'))
-            <div class="alert alert-danger mt-2" id="error-alert" role="alert">
+            <div class="alert alert-danger mt-2" id="alert-pop" role="alert">
                 <strong>{{ session('loginError') }}</strong>
             </div>
             @endif
             @if (session()->has('success'))
-            <div class="alert alert-success mt-2" id="success-alert" role="alert">
+            <div class="alert alert-success mt-2" id="alert-pop" role="alert">
                 <strong>{{ session('success') }}</strong>
             </div>
             @endif

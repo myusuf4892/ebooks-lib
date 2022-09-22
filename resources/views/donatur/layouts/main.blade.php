@@ -20,7 +20,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://bookstories.000webhostapp.com/admin/css/trix.css">
     <script type="text/javascript" src="https://bookstories.000webhostapp.com/admin/js/trix.js"></script>
-    
+
     <style class="text/css">
       table thead tr th{
         font-size: 12px;
@@ -60,7 +60,17 @@
 
 <!-- Custom scripts for all pages-->
 <script src="https://bookstories.000webhostapp.com/admin/js/sb-admin-2.min.js"></script>
-<script src="https://bookstories.000webhostapp.com/admin/js/script.js"></script>
+<script>
+    $(document).ready(function () {
+
+    window.setTimeout(function() {
+        $("#alert-pop").fadeTo(1000, 0).slideUp(1000, function(){
+            $(this).remove();
+        });
+    }, 2000);
+
+    });
+</script>
 
 <!-- Page level plugins -->
 <script src="https://bookstories.000webhostapp.com/admin/vendor/chart.js/Chart.min.js"></script>

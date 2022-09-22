@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\Midtrans\CreateSnapTokenService;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 use App\Models\Book;
@@ -44,12 +45,15 @@ class PageController extends Controller
     public function show($id)
     {
         $title = 'Book';
-        $book = Book::where('id', $id)->first();
+        $book = Book::find($id);
         $blog = Blog::first();
+        $description = Str::of($book->description)->between('<div>', '</div>');
+
         return view('pages.book', compact(
             'title',
             'book',
-            'blog'
+            'blog',
+            'description'
         ));
     }
 
@@ -61,6 +65,8 @@ class PageController extends Controller
             'user_id' => 'required',
             'book_id' => 'required',
         ]);
+
+        $book = Book::find($request->book_id);
 
         $date = Carbon::now();
         $duration = Carbon::now()->addDays($request->duration);
